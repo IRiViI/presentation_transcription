@@ -1,4 +1,4 @@
-from elevenlabs import generate, set_api_key, Voice, VoiceSettings
+from elevenlabs.client import ElevenLabs
 from models.config import settings
 import base64
 
@@ -7,7 +7,7 @@ class TTSService:
     """Service for handling text-to-speech using ElevenLabs."""
 
     def __init__(self):
-        set_api_key(settings.elevenlabs_api_key)
+        self.client = ElevenLabs(api_key=settings.elevenlabs_api_key)
 
         # Default voice IDs for different languages
         # You can customize these with specific ElevenLabs voice IDs
@@ -40,20 +40,24 @@ class TTSService:
                 language, self.default_voices["en"]
             )
 
-            # Generate audio using ElevenLabs
-            audio = generate(
+            # Generate audio using ElevenLabs new API
+            audio_generator = self.client.generate(
                 text=text,
-                voice=Voice(
-                    voice_id=selected_voice_id,
-                    settings=VoiceSettings(
-                        stability=0.5, similarity_boost=0.75, style=0.0, use_speaker_boost=True
-                    ),
-                ),
+                voice=selected_voice_id,
                 model="eleven_multilingual_v2",  # Supports multiple languages including Arabic
+                voice_settings={
+                    "stability": 0.5,
+                    "similarity_boost": 0.75,
+                    "style": 0.0,
+                    "use_speaker_boost": True,
+                },
             )
 
+            # Collect audio chunks
+            audio_bytes = b"".join(audio_generator)
+
             # Convert audio bytes to base64
-            audio_base64 = base64.b64encode(audio).decode("utf-8")
+            audio_base64 = base64.b64encode(audio_bytes).decode("utf-8")
 
             return audio_base64
 
