@@ -1,0 +1,23 @@
+{
+  "name": "presentation-transcription",
+  "version": "1.0.0",
+  "description": "Real-time presentation translation application with transcription, translation, and text-to-speech",
+  "scripts": {
+    "install:all": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install",
+    "dev:backend": "cd backend && python main.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "preview:frontend": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "presentation",
+    "translation",
+    "transcription",
+    "tts",
+    "whisper",
+    "elevenlabs",
+    "chatgpt"
+  ],
+  "author": "",
+  "license": "MIT"
+}
