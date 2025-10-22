@@ -51,6 +51,12 @@ Browser: http://localhost:5173
 
 ### 5. Gebruiken
 
+**NIEUW: Realtime Translator Mode** (standaard)
+1. Klik "Start Recording"
+2. Spreek in het Nederlands
+3. Zie real-time Nederlandse transcriptie en Arabische vertaling!
+
+**Of: Presentation Mode** (klik "Switch to Presentation Mode" rechtsboven)
 1. Klik ⚙️ → Selecteer talen (bijv. Arabisch) → Sluit
 2. Klik 📄 Upload PDF → Selecteer je presentatie
 3. Klik 🎤 Start Opname → Begin met spreken!
@@ -99,7 +105,8 @@ Browser: http://localhost:5173
 
 ## 📚 Meer Info
 
-Zie README.md voor volledige documentatie.
+- **Realtime Translator**: Zie [REALTIME_DEMO.md](REALTIME_DEMO.md)
+- **Presentation Mode**: Zie [README.md](README.md)
 
 ---
 

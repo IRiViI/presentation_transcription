@@ -4,12 +4,14 @@ import SubtitleOverlay from '@/components/SubtitleOverlay';
 import ControlPanel from '@/components/ControlPanel';
 import SettingsPanel from '@/components/SettingsPanel';
 import SettingsButton from '@/components/SettingsButton';
+import RealtimeTranslator from '@/components/RealtimeTranslator';
 import { useAppStore } from '@/services/store';
 import { api } from '@/services/api';
 import { audioService } from '@/services/audioService';
 import { SubtitleData } from '@/types';
 
 const App: React.FC = () => {
+  const [mode, setMode] = useState<'realtime' | 'presentation'>('realtime');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const { settings, addSubtitle, setCurrentSubtitle } = useAppStore();
 
@@ -76,8 +78,32 @@ const App: React.FC = () => {
     }
   };
 
+  if (mode === 'realtime') {
+    return (
+      <div style={styles.app}>
+        <div style={styles.modeToggle}>
+          <button
+            onClick={() => setMode('presentation')}
+            style={styles.toggleButton}
+          >
+            Switch to Presentation Mode
+          </button>
+        </div>
+        <RealtimeTranslator />
+      </div>
+    );
+  }
+
   return (
     <div style={styles.app}>
+      <div style={styles.modeToggle}>
+        <button
+          onClick={() => setMode('realtime')}
+          style={styles.toggleButton}
+        >
+          Switch to Realtime Translator
+        </button>
+      </div>
       <PDFViewer />
       <SubtitleOverlay />
       <ControlPanel onTranscription={handleTranscription} />
@@ -94,8 +120,25 @@ const styles: { [key: string]: React.CSSProperties } = {
   app: {
     width: '100vw',
     height: '100vh',
-    overflow: 'hidden',
+    overflow: 'auto',
     position: 'relative',
+  },
+  modeToggle: {
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    zIndex: 1000,
+  },
+  toggleButton: {
+    padding: '10px 20px',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#6366f1',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
 };
 

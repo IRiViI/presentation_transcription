@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.api import router
+from routes.realtime import router as realtime_router
 from models.config import settings
 import uvicorn
 
@@ -22,6 +23,7 @@ app.add_middleware(
 
 # Include API routes
 app.include_router(router, prefix="/api", tags=["api"])
+app.include_router(realtime_router, prefix="/api/realtime", tags=["realtime"])
 
 
 @app.get("/")

@@ -4,6 +4,15 @@ Een real-time presentatie tool met automatische transcriptie, vertaling en text-
 
 ## 🎯 Functionaliteiten
 
+### Realtime Translator (NIEUW! ⭐)
+- **Real-time Dutch-to-Arabic Translation**: Spreek in het Nederlands en zie direct de Arabische vertaling
+- **WebRTC Streaming**: Ultra-lage latentie met OpenAI Realtime API
+- **Live Transcriptie**: Zie je Nederlandse woorden verschijnen terwijl je spreekt
+- **Vertaling Historie**: Bekijk alle vorige vertalingen
+
+[📖 Zie REALTIME_DEMO.md voor complete instructies](REALTIME_DEMO.md)
+
+### Presentation Mode
 - **PDF Presentatie Viewer**: Bekijk je PowerPoint/Google Slides als PDF met eenvoudige navigatie
 - **Real-time Transcriptie**: Zet Nederlandse spraak om naar tekst met OpenAI Whisper
 - **Automatische Vertaling**: Vertaal de tekst naar meerdere talen tegelijk met ChatGPT
